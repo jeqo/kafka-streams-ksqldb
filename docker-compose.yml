@@ -44,7 +44,9 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
-      KSQL_KSQL_QUERIES_FILE: /ksql/statement.ksql
+      # Enable if run as standalone service
+#      KSQL_KSQL_QUERIES_FILE: /ksql/statement.ksql
+      # Enable if connector embedded
 #      KSQL_KSQL_CONNECT_WORKER_CONFIG: /connect/connect.properties
 #      KSQL_CONNECT_GROUP_ID: ksql-connect-cluster
 #      KSQL_CONNECT_BOOTSTRAP_SERVERS: kafka:29092
