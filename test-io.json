@@ -1,0 +1,16 @@
+{
+  "inputs": [
+    {"topic": "test_topic", "timestamp": 0, "value": {"ORDERUNITS": 2.0}, "key": 0},
+    {"topic": "test_topic", "timestamp": 0, "value": {"ORDERUNITS": 4.0}, "key": 100},
+    {"topic": "test_topic", "timestamp": 0, "value": {"ORDERUNITS": 6.0}, "key": 101},
+    {"topic": "test_topic", "timestamp": 0, "value": {"ORDERUNITS": 3.0}, "key": 101},
+    {"topic": "test_topic", "timestamp": 0, "value": {"ORDERUNITS": 1.0}, "key": 101}
+  ],
+  "outputs": [
+    {"topic": "S1", "timestamp": 0, "value": {"ORDERUNITS": 2.0, "CASE_RESULT": "medium"}, "key": 0},
+    {"topic": "S1", "timestamp": 0, "value": {"ORDERUNITS": 4.0, "CASE_RESULT": "large"}, "key": 100},
+    {"topic": "S1", "timestamp": 0, "value": {"ORDERUNITS": 6.0, "CASE_RESULT": "large"}, "key": 101},
+    {"topic": "S1", "timestamp": 0, "value": {"ORDERUNITS": 3.0, "CASE_RESULT": "medium"}, "key": 101},
+    {"topic": "S1", "timestamp": 0, "value": {"ORDERUNITS": 1.0, "CASE_RESULT": "small"},"key": 101}
+  ]
+}
