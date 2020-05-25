@@ -1,0 +1,230 @@
+[
+  {
+    "statement": "CREATE STREAM KSQL_PROCESSING_LOG (logger VARCHAR, level VARCHAR, time BIGINT, message STRUCT<type INT, deserializationError STRUCT<errorMessage VARCHAR, recordB64 VARCHAR, cause ARRAY<VARCHAR>, `topic` VARCHAR>, recordProcessingError STRUCT<errorMessage VARCHAR, record VARCHAR, cause ARRAY<VARCHAR>>, productionError STRUCT<errorMessage VARCHAR>>) WITH(KAFKA_TOPIC='default_ksql_processing_log', VALUE_FORMAT='JSON');",
+    "originalProperties": {
+      "ksql.extension.dir": "ext",
+      "ksql.streams.cache.max.bytes.buffering": "10000000",
+      "ksql.transient.prefix": "transient_",
+      "ksql.persistence.wrap.single.values": "true",
+      "ksql.authorization.cache.expiry.time.secs": "30",
+      "ksql.schema.registry.url": "http://schema-registry:8081",
+      "ksql.streams.default.deserialization.exception.handler": "io.confluent.ksql.errors.LogMetricAndContinueExceptionHandler",
+      "ksql.query.pull.enable.standby.reads": "false",
+      "ksql.connect.url": "http://localhost:8083",
+      "ksql.service.id": "default_",
+      "ksql.internal.topic.min.insync.replicas": "1",
+      "ksql.streams.shutdown.timeout.ms": "300000",
+      "ksql.internal.topic.replicas": "1",
+      "ksql.insert.into.values.enabled": "true",
+      "ksql.query.pull.max.allowed.offset.lag": "9223372036854775807",
+      "ksql.query.pull.max.qps": "2147483647",
+      "ksql.streams.default.production.exception.handler": "io.confluent.ksql.errors.ProductionExceptionHandlerUtil$LogAndFailProductionExceptionHandler",
+      "ksql.access.validator.enable": "auto",
+      "ksql.streams.bootstrap.servers": "kafka:29092",
+      "ksql.streams.commit.interval.ms": "2000",
+      "ksql.query.pull.metrics.enabled": "false",
+      "ksql.streams.topology.optimization": "all",
+      "ksql.hidden.topics": "_confluent.*,__confluent.*,_schemas,__consumer_offsets,__transaction_state,connect-configs,connect-offsets,connect-status,connect-statuses",
+      "ksql.streams.num.stream.threads": "4",
+      "ksql.timestamp.throw.on.invalid": "false",
+      "ksql.authorization.cache.max.entries": "10000",
+      "ksql.pull.queries.enable": "true",
+      "ksql.udfs.enabled": "true",
+      "ksql.udf.enable.security.manager": "true",
+      "ksql.streams.application.server": "http://d7cb0ac62dd0:8088",
+      "ksql.any.key.name.enabled": "false",
+      "ksql.sink.window.change.log.additional.retention": "1000000",
+      "ksql.readonly.topics": "_confluent.*,__confluent.*,_schemas,__consumer_offsets,__transaction_state,connect-configs,connect-offsets,connect-status,connect-statuses",
+      "ksql.udf.collect.metrics": "false",
+      "ksql.persistent.prefix": "query_",
+      "ksql.query.persistent.active.limit": "2147483647"
+    },
+    "plan": {
+      "@type": "ksqlPlanV1",
+      "statementText": "CREATE STREAM KSQL_PROCESSING_LOG (logger VARCHAR, level VARCHAR, time BIGINT, message STRUCT<type INT, deserializationError STRUCT<errorMessage VARCHAR, recordB64 VARCHAR, cause ARRAY<VARCHAR>, `topic` VARCHAR>, recordProcessingError STRUCT<errorMessage VARCHAR, record VARCHAR, cause ARRAY<VARCHAR>>, productionError STRUCT<errorMessage VARCHAR>>) WITH(KAFKA_TOPIC='default_ksql_processing_log', VALUE_FORMAT='JSON');",
+      "ddlCommand": {
+        "@type": "createStreamV1",
+        "sourceName": "KSQL_PROCESSING_LOG",
+        "schema": "`ROWKEY` STRING KEY, `LOGGER` STRING, `LEVEL` STRING, `TIME` BIGINT, `MESSAGE` STRUCT<`TYPE` INTEGER, `DESERIALIZATIONERROR` STRUCT<`ERRORMESSAGE` STRING, `RECORDB64` STRING, `CAUSE` ARRAY<STRING>, `topic` STRING>, `RECORDPROCESSINGERROR` STRUCT<`ERRORMESSAGE` STRING, `RECORD` STRING, `CAUSE` ARRAY<STRING>>, `PRODUCTIONERROR` STRUCT<`ERRORMESSAGE` STRING>>",
+        "topicName": "default_ksql_processing_log",
+        "formats": {
+          "keyFormat": {
+            "format": "KAFKA"
+          },
+          "valueFormat": {
+            "format": "JSON"
+          }
+        }
+      }
+    },
+    "version": 0
+  },
+  {
+    "statement": "CREATE STREAM orders (\n    ROWKEY INT KEY,\n    ORDERUNITS double\n)\nWITH (\n    kafka_topic='test_topic',\n    partitions=12,\n    replicas=1,\n    value_format='JSON'\n);",
+    "originalProperties": {
+      "ksql.extension.dir": "ext",
+      "ksql.streams.cache.max.bytes.buffering": "10000000",
+      "ksql.transient.prefix": "transient_",
+      "ksql.persistence.wrap.single.values": "true",
+      "ksql.authorization.cache.expiry.time.secs": "30",
+      "ksql.schema.registry.url": "http://schema-registry:8081",
+      "ksql.streams.default.deserialization.exception.handler": "io.confluent.ksql.errors.LogMetricAndContinueExceptionHandler",
+      "ksql.query.pull.enable.standby.reads": "false",
+      "ksql.connect.url": "http://localhost:8083",
+      "ksql.service.id": "default_",
+      "ksql.internal.topic.min.insync.replicas": "1",
+      "ksql.streams.shutdown.timeout.ms": "300000",
+      "ksql.internal.topic.replicas": "1",
+      "ksql.insert.into.values.enabled": "true",
+      "ksql.query.pull.max.allowed.offset.lag": "9223372036854775807",
+      "ksql.query.pull.max.qps": "2147483647",
+      "ksql.streams.default.production.exception.handler": "io.confluent.ksql.errors.ProductionExceptionHandlerUtil$LogAndFailProductionExceptionHandler",
+      "ksql.access.validator.enable": "auto",
+      "ksql.streams.bootstrap.servers": "kafka:29092",
+      "ksql.streams.commit.interval.ms": "2000",
+      "ksql.query.pull.metrics.enabled": "false",
+      "ksql.streams.topology.optimization": "all",
+      "ksql.hidden.topics": "_confluent.*,__confluent.*,_schemas,__consumer_offsets,__transaction_state,connect-configs,connect-offsets,connect-status,connect-statuses",
+      "ksql.streams.num.stream.threads": "4",
+      "ksql.timestamp.throw.on.invalid": "false",
+      "ksql.authorization.cache.max.entries": "10000",
+      "ksql.pull.queries.enable": "true",
+      "ksql.udfs.enabled": "true",
+      "ksql.udf.enable.security.manager": "true",
+      "ksql.streams.application.server": "http://d7cb0ac62dd0:8088",
+      "ksql.any.key.name.enabled": "false",
+      "ksql.sink.window.change.log.additional.retention": "1000000",
+      "ksql.readonly.topics": "_confluent.*,__confluent.*,_schemas,__consumer_offsets,__transaction_state,connect-configs,connect-offsets,connect-status,connect-statuses",
+      "ksql.udf.collect.metrics": "false",
+      "ksql.persistent.prefix": "query_",
+      "ksql.query.persistent.active.limit": "2147483647"
+    },
+    "plan": {
+      "@type": "ksqlPlanV1",
+      "statementText": "CREATE STREAM orders (\n    ROWKEY INT KEY,\n    ORDERUNITS double\n)\nWITH (\n    kafka_topic='test_topic',\n    partitions=12,\n    replicas=1,\n    value_format='JSON'\n);",
+      "ddlCommand": {
+        "@type": "createStreamV1",
+        "sourceName": "ORDERS",
+        "schema": "`ROWKEY` INTEGER KEY, `ORDERUNITS` DOUBLE",
+        "topicName": "test_topic",
+        "formats": {
+          "keyFormat": {
+            "format": "KAFKA"
+          },
+          "valueFormat": {
+            "format": "JSON"
+          }
+        }
+      }
+    },
+    "version": 0
+  },
+  {
+    "statement": "CREATE STREAM S1 WITH (KAFKA_TOPIC='S1', PARTITIONS=12, REPLICAS=1) AS SELECT\n  ORDERS.ORDERUNITS ORDERUNITS,\n  (CASE WHEN (ORDERS.ORDERUNITS < 2.0) THEN 'small' WHEN (ORDERS.ORDERUNITS < 4.0) THEN 'medium' ELSE 'large' END) CASE_RESULT\nFROM ORDERS ORDERS\nEMIT CHANGES;",
+    "originalProperties": {
+      "ksql.extension.dir": "ext",
+      "ksql.streams.cache.max.bytes.buffering": "10000000",
+      "ksql.transient.prefix": "transient_",
+      "ksql.persistence.wrap.single.values": "true",
+      "ksql.authorization.cache.expiry.time.secs": "30",
+      "ksql.schema.registry.url": "http://schema-registry:8081",
+      "ksql.streams.default.deserialization.exception.handler": "io.confluent.ksql.errors.LogMetricAndContinueExceptionHandler",
+      "ksql.query.pull.enable.standby.reads": "false",
+      "ksql.connect.url": "http://localhost:8083",
+      "ksql.service.id": "default_",
+      "ksql.internal.topic.min.insync.replicas": "1",
+      "ksql.streams.shutdown.timeout.ms": "300000",
+      "ksql.internal.topic.replicas": "1",
+      "ksql.insert.into.values.enabled": "true",
+      "ksql.query.pull.max.allowed.offset.lag": "9223372036854775807",
+      "ksql.query.pull.max.qps": "2147483647",
+      "ksql.streams.default.production.exception.handler": "io.confluent.ksql.errors.ProductionExceptionHandlerUtil$LogAndFailProductionExceptionHandler",
+      "ksql.access.validator.enable": "auto",
+      "ksql.streams.bootstrap.servers": "kafka:29092",
+      "ksql.streams.commit.interval.ms": "2000",
+      "ksql.query.pull.metrics.enabled": "false",
+      "ksql.streams.topology.optimization": "all",
+      "ksql.hidden.topics": "_confluent.*,__confluent.*,_schemas,__consumer_offsets,__transaction_state,connect-configs,connect-offsets,connect-status,connect-statuses",
+      "ksql.streams.num.stream.threads": "4",
+      "ksql.timestamp.throw.on.invalid": "false",
+      "ksql.authorization.cache.max.entries": "10000",
+      "ksql.pull.queries.enable": "true",
+      "ksql.udfs.enabled": "true",
+      "ksql.udf.enable.security.manager": "true",
+      "ksql.streams.application.server": "http://d7cb0ac62dd0:8088",
+      "ksql.any.key.name.enabled": "false",
+      "ksql.sink.window.change.log.additional.retention": "1000000",
+      "ksql.readonly.topics": "_confluent.*,__confluent.*,_schemas,__consumer_offsets,__transaction_state,connect-configs,connect-offsets,connect-status,connect-statuses",
+      "ksql.udf.collect.metrics": "false",
+      "ksql.persistent.prefix": "query_",
+      "ksql.query.persistent.active.limit": "2147483647"
+    },
+    "plan": {
+      "@type": "ksqlPlanV1",
+      "statementText": "CREATE STREAM S1 WITH (KAFKA_TOPIC='S1', PARTITIONS=12, REPLICAS=1) AS SELECT\n  ORDERS.ORDERUNITS ORDERUNITS,\n  (CASE WHEN (ORDERS.ORDERUNITS < 2.0) THEN 'small' WHEN (ORDERS.ORDERUNITS < 4.0) THEN 'medium' ELSE 'large' END) CASE_RESULT\nFROM ORDERS ORDERS\nEMIT CHANGES;",
+      "ddlCommand": {
+        "@type": "createStreamV1",
+        "sourceName": "S1",
+        "schema": "`ROWKEY` INTEGER KEY, `ORDERUNITS` DOUBLE, `CASE_RESULT` STRING",
+        "topicName": "S1",
+        "formats": {
+          "keyFormat": {
+            "format": "KAFKA"
+          },
+          "valueFormat": {
+            "format": "JSON"
+          }
+        }
+      },
+      "queryPlan": {
+        "sources": [
+          "ORDERS"
+        ],
+        "sink": "S1",
+        "physicalPlan": {
+          "@type": "streamSinkV1",
+          "properties": {
+            "queryContext": "S1"
+          },
+          "source": {
+            "@type": "streamSelectV1",
+            "properties": {
+              "queryContext": "Project"
+            },
+            "source": {
+              "@type": "streamSourceV1",
+              "properties": {
+                "queryContext": "KsqlTopic/Source"
+              },
+              "topicName": "test_topic",
+              "formats": {
+                "keyFormat": {
+                  "format": "KAFKA"
+                },
+                "valueFormat": {
+                  "format": "JSON"
+                }
+              },
+              "sourceSchema": "`ROWKEY` INTEGER KEY, `ORDERUNITS` DOUBLE"
+            },
+            "selectExpressions": [
+              "ORDERUNITS AS ORDERUNITS",
+              "(CASE WHEN (ORDERUNITS < 2.0) THEN 'small' WHEN (ORDERUNITS < 4.0) THEN 'medium' ELSE 'large' END) AS CASE_RESULT"
+            ]
+          },
+          "formats": {
+            "keyFormat": {
+              "format": "KAFKA"
+            },
+            "valueFormat": {
+              "format": "JSON"
+            }
+          },
+          "topicName": "S1"
+        },
+        "queryId": "CSAS_S1_0"
+      }
+    },
+    "version": 0
+  }
+]
