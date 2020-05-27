@@ -10,6 +10,7 @@ WITH (
 );
 CREATE STREAM S1 AS
 SELECT
+    ROWKEY,
     ORDERUNITS,
     CASE
         WHEN orderunits < 2.0 THEN 'small'
